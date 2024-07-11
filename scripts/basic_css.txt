@@ -1,0 +1,337 @@
+/*###################################################*/
+/*...................................................*/
+/* root variables (responsive font size installed)   */
+/*...................................................*/
+/*###################################################*/
+
+:root {
+    /* font size */
+    --fs-b: 14px;
+	
+    /* custom colors */
+    
+	--background: #F5F5F5;
+    --text: #000;
+	
+   	/* theme colors */
+  
+    --primary: #ac8a54;
+	--mono:ac8a54;
+	--contrast:ac8a54;
+}
+
+/*-------------------------------*/
+/* font mechanism */
+/*-------------------------------*/
+
+/* tablet up */
+@media (min-width: 768px) {
+    :root {
+        /* font size */
+        --fs-b: 16px;
+    }
+}
+
+/* end tablet up */
+
+/* laptop up */
+@media (min-width: 991px) {
+    :root {
+        /* font size */
+        --fs-b: 18px;
+    }
+}
+/* end laptop up */
+
+/* desktop up */
+@media (min-width: 1300px) {
+    :root {
+        /* font size */
+        --fs-b: 22px;
+    }
+}
+
+
+/*-------------------------------*/
+/* end font mechanism */
+/*-------------------------------*/
+
+
+/*###################################################*/
+/*...................................................*/
+/* end root variables                                */
+/*...................................................*/
+/*###################################################*/
+
+/*###################################################*/
+/*...................................................*/
+/* general properties */
+/*...................................................*/
+/*###################################################*/
+
+html {
+    /* scroll smooth from nav control */
+    scroll-behavior: smooth;
+    /* distancia extra de scroll */
+    scroll-padding-top: 200px;
+    /* font size general control using variable */
+    font-size: var(--fs-b);
+    /* font-family  */
+    font-family: Helvetica;
+}
+
+
+body {
+
+    background-color: var(--brColor);
+    color: var(--text);
+    margin: 0;
+    padding: 0;
+	
+	/* Text rendering */
+	
+	text-rendering: optimizeLegibility;
+  	-webkit-font-smoothing: antialiased;
+  	-moz-osx-font-smoothing: grayscale;
+
+}
+
+/* ajustando y centrando el contenido en un ancho máximo */
+
+body>section {
+    max-width: 1824px;
+    margin: 5rem auto !important;
+	float: none !important;
+}
+
+
+
+/*-------------------------------*/
+/* margins */
+/*-------------------------------*/
+
+.m-0 {
+    margin: 0;
+}
+
+.m-1 {
+    margin: 1rem;
+}
+
+.m-2 {
+    margin: 2rem;
+}
+
+.m-3 {
+    margin: 3rem;
+}
+
+.m-4 {
+    margin: 4rem;
+}
+
+/* ---top--- */
+.mt-1 {
+    margin-top: 1rem;
+}
+
+.mt-2 {
+    margin-top: 2rem;
+}
+
+.mt-3 {
+    margin-top: 3rem;
+}
+
+.mt-4 {
+    margin-top: 4rem;
+}
+
+/* ---end top--- */
+
+/* ---bottom--- */
+.mb-1 {
+    margin-bottom: 1rem;
+}
+
+.mb-2 {
+    margin-bottom: 2rem;
+}
+
+.mb-3 {
+    margin-bottom: 3rem;
+}
+
+.mb-4 {
+    margin-bottom: 4rem;
+}
+
+/* ---end bottom--- */
+
+/* ---left--- */
+.ml-1 {
+    margin-left: 1rem;
+}
+
+.ml-2 {
+    margin-left: 2rem;
+}
+
+.ml-3 {
+    margin-left: 3rem;
+}
+
+.ml-4 {
+    margin-left: 4rem;
+}
+
+/* ---end left--- */
+
+/* ---right--- */
+.mr-1 {
+    margin-right: 1rem;
+}
+
+.mr-2 {
+    margin-right: 2rem;
+}
+
+.mr-3 {
+    margin-right: 3rem;
+}
+
+.mr-4 {
+    margin-right: 4rem;
+}
+
+/* ---end right--- */
+
+/*-------------------------------*/
+/* end margins */
+/*-------------------------------*/
+
+/*-------------------------------*/
+/* paddings */
+/*-------------------------------*/
+
+.p-0 {
+    padding: 0;
+}
+
+.p-1 {
+    padding: 1rem;
+}
+
+.p-2 {
+    padding: 2rem;
+}
+
+.p-3 {
+    padding: 3rem;
+}
+
+.p-4 {
+    padding: 4rem;
+}
+
+/* ---top--- */
+.pt-1 {
+    padding-top: 1rem;
+}
+
+.pt-2 {
+    padding-top: 2rem;
+}
+
+.pt-3 {
+    padding-top: 3rem;
+}
+
+.pt-4 {
+    padding-top: 4rem;
+}
+
+/* ---end top--- */
+
+/* ---bottom--- */
+.pb-1 {
+    padding-bottom: 1rem;
+}
+
+.pb-2 {
+    padding-bottom: 2rem;
+}
+
+.pb-3 {
+    padding-bottom: 3rem;
+}
+
+.pb-4 {
+    padding-bottom: 4rem;
+}
+
+/* ---end bottom--- */
+
+/* ---left--- */
+.pl-1 {
+    padding-left: 1rem;
+}
+
+.pl-2 {
+    padding-left: 2rem;
+}
+
+.pl-3 {
+    padding-left: 3rem;
+}
+
+.pl-4 {
+    padding-left: 4rem;
+}
+
+/* ---end left--- */
+
+/* ---right--- */
+.pr-1 {
+    padding-right: 1rem;
+}
+
+.pr-2 {
+    padding-right: 2rem;
+}
+
+.pr-3 {
+    padding-right: 3rem;
+}
+
+.pr-4 {
+    padding-right: 4rem;
+}
+
+/* ---end right--- */
+
+/*-------------------------------*/
+/* end paddings */
+/*-------------------------------*/
+
+/*-------------------------------*/
+/* special styles */
+/*-------------------------------*/
+
+*,
+*:before,
+*:after {
+    -webkit-box-sizing: inherit;
+    box-sizing: inherit;
+}
+
+/*-------------------------------*/
+/* end special styles */
+/*-------------------------------*/
+
+
+/*###################################################*/
+/*...................................................*/
+/* end general properties */
+/*...................................................*/
+/*###################################################*/
