@@ -1,0 +1,24 @@
+Fontawesome workflow
+
+
+You can get the exact instructions (with codes and tokens if you activate your kit for npm acces in the config of the kit (on the website) 
+
+1. Configure access for your Project
+
+To authenticate when using npm, create a .npmrc file in the root of your project (or wherever your package.json file lives). Then add the following snippet:
+
+    @awesome.me:registry=https://npm.fontawesome.com/
+    @fortawesome:registry=https://npm.fontawesome.com/
+    //npm.fontawesome.com/:_authToken=YOUR_TOKEN
+
+2. Install Icons in your Project
+
+Once access is set up, you can now install your Font Awesome Kit as a package via npm.
+
+    npm install --save '@awesome.me/kit-YOUR_KIT@latest'
+
+3. Updating your Package
+
+If you add, remove, or edit icons or styles in your Kit, you'll need to update your package to get the latest changes.
+
+    npm update '@awesome.me/kit-YOUR_KIT'
