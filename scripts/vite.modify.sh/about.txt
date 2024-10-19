@@ -1,0 +1,3 @@
+Script que modifica un proyecto de vite, agregando un archivo dev-network con instrucciones personalizadas para previsualizar mientras desarrollo y lo hace funcionar modificando vite.config y package.json 
+
+Hay que colocarlo en: Macintosh HD > usr > local > bin

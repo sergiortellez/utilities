@@ -1,0 +1,86 @@
+#!/bin/bash
+
+# Define file paths
+FILE="dev-network.sh"
+PACKAGE_JSON="package.json"
+VITE_CONFIG="vite.config.js"
+
+# Function to update package.json
+update_package_json() {
+    jq '.scripts |= . + {"dev-net": "./dev-network.sh"}' "$PACKAGE_JSON" > temp.json && mv temp.json "$PACKAGE_JSON"
+    echo "Added 'dev-net': 'dev-network' script to $PACKAGE_JSON."
+}
+
+# Function to update vite.config.js
+update_vite_config() {
+    # Check for plugins: [react()], line and add server configuration after it
+    awk '/plugins: \[react\(\)\],/{print;print "  server: {\n    host: '\''0.0.0.0'\''\n  },";next}1' $VITE_CONFIG > temp.js && mv temp.js $VITE_CONFIG
+    echo "Server configuration added to $VITE_CONFIG."
+}
+
+# Check if package.json exists
+if [ -f "$PACKAGE_JSON" ]; then
+    echo "Found $PACKAGE_JSON."
+    update_package_json
+else
+    echo "No $PACKAGE_JSON found in the current directory."
+fi
+
+# Check if vite.config.js exists
+if [ -f "$VITE_CONFIG" ]; then
+    echo "Found $VITE_CONFIG."
+    update_vite_config
+else
+    echo "No $VITE_CONFIG found in the current directory."
+fi
+
+# Check if dev-network.sh already exists
+if [ -f "$FILE" ]; then
+    echo "File $FILE already exists."
+else
+    # Create dev-network.sh and add the desired text
+    cat > $FILE << EOF
+#!/bin/bash
+# Get the current IP address on macOS
+IP=\$(ipconfig getifaddr en0)
+
+# Kill any process using the Vite's default port (3000 is default for Create React App, 5173 for Vite)
+lsof -ti:5173 | xargs kill -9
+
+# Construct the full URL
+URL="http://\$IP:5173"
+
+# Start the Vite app without opening a browser
+BROWSER=none npm run dev &
+
+# Wait for the server to start
+sleep 5
+
+# Open the URL in Google Chrome
+open -a "Google Chrome" \$URL
+
+# Copy the URL to the clipboard
+echo \$URL | pbcopy
+
+echo "Development server running in network and (copied to clipboard)"
+
+#                  🆁🅴🅰🅳 🅼🅴
+
+# Don't forget to adjust the scripts in package.json accordingly:
+
+# "scripts": {
+#   "dev": "vite", // This is the default script for starting a Vite project
+#   "start-network": "./start-network.sh"
+# }
+
+# And the first time, you must run this command to give execution permissions:
+# chmod +x start-network.sh
+EOF
+
+    # Make dev-network.sh executable
+    chmod +x $FILE
+
+    echo "File $FILE has been created and made executable."
+fi
+
+echo "Script execution complete."
