@@ -118,10 +118,18 @@ ZSH_HIGHLIGHT_STYLES[double-hyphen-option]='fg=94'
  alias zshconfig="vim ~/.zshrc"
 #alias ohmyzsh="mate ~/.oh-my-zsh"
  alias bs.e="browser-sync start -s --browser 'Google Chrome' --cwd -w --open 'external'"
-#Antigen Plugin
-# for LSD
+# for LS with EZA
  alias ls='eza --icons=always --color=auto --long  --git  --group-directories-first --no-filesize --no-time --no-permissions --no-user'
 
+
+#function to change directory and list in the same line
+cdl() {
+    if [ -d "$1" ]; then
+        cd "$1" && ls
+    else
+        echo "Error: '$1' is not a directory"
+    fi
+}
 
 
 # Keybindings for autocomplete
@@ -130,3 +138,4 @@ bindkey '^I' autosuggest-accept  # Use Tab for word-by-word completion
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 source ~/powerlevel10k/powerlevel10k.zsh-theme
+
