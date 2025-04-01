@@ -15,7 +15,6 @@ for file in "${files[@]}"; do
 done
 echo "End of file list" >> ~/scripts/compression_log.txt
 
-
 # Define color codes
 RED='\033[0;31m'
 GREEN='\033[0;32m'
@@ -23,14 +22,18 @@ YELLOW='\033[0;33m'
 BLUE='\033[0;34m'
 NC='\033[0m' # No Color
 
-# Use standard arrays instead of associative arrays for compatibility
+# Arrays to hold original and compressed sizes and file paths
 original_sizes=()
 compressed_sizes=()
 file_paths=()
 
-# Function to get file size in bytes
+# Function to get file size in bytes (using macOS stat)
 get_file_size() {
-    stat -f%z "$1" 2>/dev/null || stat -c%s "$1"
+    if [ -f "$1" ]; then
+        stat -f%z "$1" 2>/dev/null || echo 0
+    else
+        echo 0
+    fi
 }
 
 # Function to show progress bar with animation
@@ -39,16 +42,14 @@ show_progress() {
     local total=$2
     local bar_width=40
     local completed=$(( (progress * bar_width) / total ))
-    local remaining=$(( bar_width - completed ))
     local spinner=("/" "-" "\\" "|")
-
-    printf "\r[%-*s] %d/%d Files Processed - Auto Mode %s" "$bar_width" "$(printf '#%.0s' $(seq 1 $completed))" "$progress" "$total" "${spinner[$((progress % 4))]}"
+    printf "\r[%-*s] %d/%d Files Processed - Auto Mode %s" \
+        "$bar_width" "$(printf '#%.0s' $(seq 1 $completed))" "$progress" "$total" "${spinner[$((progress % 4))]}"
 }
 
-# Function to show a beautiful summary
+# Function to show a summary of the compression results
 show_summary() {
     echo -e "\n\n${BLUE}=== Compression Summary ===${NC}"
-
     total_original=0
     total_compressed=0
 
@@ -66,6 +67,7 @@ show_summary() {
             reduction=0
         fi
 
+        # Choose a color based on how large the reduction is
         if (( reduction > 50 )); then
             color=$GREEN
         elif (( reduction > 20 )); then
@@ -109,38 +111,60 @@ for file in "${files[@]}"; do
         dir=$(dirname "$file")
         base=$(basename "$file" ."$ext")
 
+        # Record original file size
         original_size=$(get_file_size "$file")
         original_sizes+=("$original_size")
         file_paths+=("$file")
 
-        # Preserve original by renaming
-        mv "$file" "$dir/$base@old.$ext"
+        # Rename the original file to preserve it (backup)
+        backup_file="$dir/$base@old.$ext"
+        mv "$file" "$backup_file"
 
         case "$ext" in
             png)
-                /usr/local/bin/pngquant --quality=70-85 --force --output="$dir/$base.png" "$dir/$base@old.png"
+                # PNG: Compress with pngquant, keep the backup
+                target_file="$dir/$base.png"
+                rm -f "$target_file"
+                pngquant_output=$(mktemp)
+                /usr/local/bin/pngquant --verbose --quality=50-85 --force \
+                                        --output "$target_file" "$backup_file" \
+                                        2> "$pngquant_output"
+                if [ ! -s "$target_file" ]; then
+                    echo "pngquant failed for $backup_file, restoring original."
+                    echo "pngquant error output:"
+                    cat "$pngquant_output"
+                    cp "$backup_file" "$target_file"
+                fi
+                rm "$pngquant_output"
                 ;;
             jpg|jpeg)
-                /usr/local/bin/jpegoptim --strip-all --max=85 --dest="$dir" "$dir/$base@old.$ext"
+                # JPEG: Copy the backup back to original name, then compress in place
+                target_file="$dir/$base.$ext"
+                rm -f "$target_file"
+                cp "$backup_file" "$target_file"
+                /usr/local/bin/jpegoptim --strip-all --max=80 "$target_file"
                 ;;
             webp)
-                /usr/local/bin/cwebp -q 80 "$dir/$base@old.webp" -o "$dir/$base.webp"
+                # WEBP: Compress with cwebp, keep the backup
+                target_file="$dir/$base.webp"
+                rm -f "$target_file"
+                /usr/local/bin/cwebp -q 80 "$backup_file" -o "$target_file"
                 ;;
             *)
                 echo "Unsupported file format: $file"
                 ;;
         esac
 
-        compressed_size=$(get_file_size "$dir/$base.$ext")
+        # Get the compressed file size
+        compressed_size=$(get_file_size "$target_file")
         compressed_sizes+=("$compressed_size")
     fi
-
 done
 
 # Show final summary
 show_summary
 
-# Clean up
+# Clean up temporary file
 rm /Users/sergiortellez/scripts/temp_file_list.txt
 
 # ============================== INSTRUCTIONS ==============================
@@ -157,5 +181,4 @@ rm /Users/sergiortellez/scripts/temp_file_list.txt
 #    - for file in "$@"; do echo "$file" >> /Users/sergiortellez/scripts/temp_file_list.txt; done
 #    - osascript -e 'tell application "Terminal" to do script "/Users/sergiortellez/scripts/compress_images_auto.sh"'
 # 6. Test the workflow with image files.
-# ===========================================================================
-
+# ===========================================================================s
