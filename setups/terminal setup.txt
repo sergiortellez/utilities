@@ -1,0 +1,198 @@
+# 🛠 macOS Developer Setup Guide (Apple Silicon - M1/M2/M3)
+
+This guide will help you fully set up your terminal, Vim, Zsh, and clipboard-based workflows on a new Mac (with an Apple Silicon chip).
+
+---
+
+## ✅ Prerequisites
+
+1. **Install Xcode Command Line Tools**:
+```bash
+xcode-select --install
+```
+
+2. **Install Homebrew**:
+```bash
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
+Add to `.zshrc` if needed:
+```bash
+export PATH="/opt/homebrew/bin:$PATH"
+```
+Then:
+```bash
+source ~/.zshrc
+```
+
+---
+
+## 🔧 Terminal & Shell Setup
+
+### Install Oh My Zsh:
+```bash
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+```
+
+### Install Plugins:
+```bash
+git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+```
+
+### Install Powerlevel10k Theme:
+```bash
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+```
+
+---
+
+## ⚙️ .zshrc Configuration
+Paste the following into your `~/.zshrc`:
+
+```zsh
+# Oh My Zsh base setup
+export ZSH="$HOME/.oh-my-zsh"
+ZSH_THEME="powerlevel10k/powerlevel10k"
+plugins=(
+  git
+  zsh-syntax-highlighting
+  zsh-autosuggestions
+)
+
+source $ZSH/oh-my-zsh.sh
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+COMPLETION_WAITING_DOTS="true"
+HIST_STAMPS="dd/mm/yyyy"
+
+ZSH_HIGHLIGHT_STYLES[single-hyphen-option]='fg=94'
+ZSH_HIGHLIGHT_STYLES[double-hyphen-option]='fg=94'
+
+# Aliases
+alias zshconfig="vim ~/.zshrc"
+alias bs.e="browser-sync start -s --browser 'Google Chrome' --cwd -w --open 'external'"
+alias ls='eza --icons=always --color=auto --long  --git  --group-directories-first --no-filesize --no-time --no-permissions --no-user'
+
+# Functions
+cdl() {
+    if [ -d "$1" ]; then
+        cd "$1" && ls
+    else
+        echo "Error: '$1' is not a directory"
+    fi
+}
+
+greplog() {
+  local pattern="${*:-v\\.alpha}"
+  git log --grep="$pattern" --pretty=format:"%ad %s" --date=short | pbcopy
+}
+
+# Keybindings
+bindkey '^I' autosuggest-accept
+
+# Folder Aliases
+base_path="/Users/sergiortellez/repos/repos_up/smartCenter/src"
+alias assets="cd $base_path/assets && ls"
+alias components="cd $base_path/components && ls"
+alias context="cd $base_path/context && ls"
+alias data="cd $base_path/data && ls"
+alias firebase="cd $base_path/firebase && ls"
+alias hooks="cd $base_path/hooks && ls"
+alias pages="cd $base_path/pages && ls"
+alias src="cd /Users/sergiortellez/repos/repos_up/smartCenter/src && ls"
+```
+
+Reload:
+```bash
+source ~/.zshrc
+```
+
+---
+
+## 📦 Install CLI Tools via Homebrew
+```bash
+brew install vim
+brew install eza
+brew install git
+brew install gh
+brew install fzf
+brew install neovim
+brew install tree
+```
+
+---
+
+## 🧠 Vim Setup
+
+### Install vim-plug:
+```bash
+curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+```
+
+### Paste this into `~/.vimrc`:
+```vim
+" General Settings
+set number
+syntax on
+set spell
+set autoindent
+set smartindent
+set tabstop=4
+set shiftwidth=4
+set expandtab
+set mouse=a
+set encoding=utf-8
+set fileencoding=utf-8
+
+" Plugins
+call plug#begin('~/.vim/plugged')
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+call plug#end()
+
+filetype plugin indent on
+
+" UltiSnips Config
+let g:UltiSnipsExpandTrigger       = '<Tab>'
+let g:UltiSnipsJumpForwardTrigger  = '<Tab>'
+let g:UltiSnipsJumpBackwardTrigger = '<S-Tab>'
+let g:UltiSnipsEditSplit           = "vertical"
+
+" Custom clipboard commands
+command! CopyAll normal! ggVG"+y
+command! -range CopySelection <line1>,<line2>yank +
+```
+
+### Install Plugins:
+Open Vim and run:
+```vim
+:PlugInstall
+```
+
+---
+
+## 🧩 Create Snippets File for Git Commits
+```bash
+mkdir -p ~/.vim/UltiSnips
+vim ~/.vim/UltiSnips/gitcommit.snippets
+```
+Add this content:
+```snippets
+snippet glog "Git log message template"
+@${1:location file}(${2:type}), ${3:verb}:
+	- ${4:feature}
+endsnippet
+```
+
+---
+
+## ✅ Ready to Go!
+Now you're set up with:
+- Zsh + Oh My Zsh + Powerlevel10k
+- Vim + clipboard integration + snippets
+- Handy aliases and folder shortcuts
+- GitHub CLI & custom commit message templates
+
+You're unstoppable now 🚀
+
