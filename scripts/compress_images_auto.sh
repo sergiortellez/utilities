@@ -181,4 +181,9 @@ rm /Users/sergiortellez/scripts/temp_file_list.txt
 #    - for file in "$@"; do echo "$file" >> /Users/sergiortellez/scripts/temp_file_list.txt; done
 #    - osascript -e 'tell application "Terminal" to do script "/Users/sergiortellez/scripts/compress_images_auto.sh"'
 # 6. Test the workflow with image files.
-# ===========================================================================s
+# ===========================================================================
+
+---
+
+
+
