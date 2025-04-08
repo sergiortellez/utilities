@@ -1,0 +1,546 @@
+Learn Modern JavaScript from the very start to ninja-level & build awesome JavaScript applications.
+
+Section 1: Introduction
+
+1. Why You Should Take This Course  
+2. Why JavaScript is Amazing  
+3. Setting up Your Environment  
+4. Course Files 
+
+Section 2: JavaScript Basics
+
+5. Adding JavaScript to a Web Page  
+6. The Browser Console  
+7. Variables, Constants & Comments  
+8. Data Types at a Glance  
+9. Strings  
+10. Common String Methods  
+11. Numbers  
+12. Template Strings  
+13. Arrays  
+14. Null & Undefined  
+15. Booleans & Comparisons  
+16. Loose vs Strict Comparison  
+17. Type Conversion  
+
+Section 3: Control Flow Basics
+
+18. What is Control Flow?  
+19. For Loops  
+20. While Loops  
+21. Do While Loops  
+22. If Statements  
+23. Else & Else If  
+24. Logical Operators  
+25. Logical NOT  
+26. Break & Continue  
+27. Switch Statements  
+28. Variables & Block Scope
+
+Section 4: Functions & Methods
+
+29. What are Functions?  
+30. Function Declarations & Expressions  
+31. Arguments & Parameters  
+32. Returning Values  
+33. Arrow Functions  
+34. Functions vs Methods  
+35. Foreach Method & Callbacks  
+36. Callback Functions in Action 
+
+Section 5: Object Literals
+
+37. Objects at a Glance  
+38. Creating an Object Literal  
+39. Adding Methods  
+40. 'this' Keyword  
+41. Objects in Arrays  
+42. Math Object  
+43. Primitive vs Reference Types 
+
+Section 6: The Document Object Model
+
+44. Interacting with the Browser  
+45. The DOM Explained  
+46. The Query Selector  
+47. Other Ways to Query the DOM  
+48. Adding & Changing Page Content  
+49. Getting & Setting Attributes  
+50. Changing CSS Styles  
+51. Adding & Removing Classes  
+52. Parents, Children & Siblings  
+53. Event Basics (click events)  
+54. Creating & Removing Elements  
+55. Event Bubbling (and delegation)  
+56. More DOM Events  
+57. Building a Popup 
+
+Section 7: Forms & Form Events
+
+58. Events Inside Forms  
+59. Submit Events  
+60. Regular Expressions  
+61. Testing RegEx Patterns  
+62. Basic Form Validation  
+63. Keyboard Events 
+
+Section 8: Project - Interactive Ninja Quiz
+
+64. Project Preview & Setup  
+65. Bootstrap Basics  
+66. HTML Template  
+67. Checking Answers  
+68. Showing the Score  
+69. The Window Object 
+
+Section 9: Array Methods
+
+70. Intervals & Animating the Score  
+71. Filter Method  
+72. Map Method  
+73. Reduce Method  
+74. Find Method  
+75. Sort Method  
+76. Chaining Array Methods  
+
+Section 10: Project - Todo List
+
+77. Project Preview and Setup  
+78. HTML & CSS Template  
+79. Adding Todos  
+80. Deleting Todos  
+81. Searching & Filtering Todos 
+
+Section 11: Dates & Times
+
+82. Dates & Times in JavaScript  
+83. Timestamps & Comparisons  
+84. Building a Digital Clock  
+85. Date-fns Library  
+
+Section 12: Async JavaScript
+
+86. What is Asynchronous JavaScript?  
+87. Async Code in Action  
+88. What are HTTP Requests?  
+89. Making HTTP Requests (XHR)  
+90. Response Status  
+91. Callback Functions  
+92. JSON Data  
+93. Callback Hell  
+94. Promise Basics  
+95. Chaining Promises  
+96. The Fetch API  
+97. Async & Await  
+98. Throwing & Catching Errors 
+
+Section 13: Project - Weather App
+
+99. Project Preview & Setup  
+100. HTML & CSS Template  
+101. AccuWeather API  
+102. Get City API Call  
+103. Get Weather API Call  
+104. Updating the Location  
+105. Object Shorthand Notation  
+106. Updating the UI  
+107. Destructuring  
+108. Weather Icons & images  
+109. Ternary Operator  
+110. What is Local Storage? 
+
+Section 14: Local Storage
+
+111. Storing & Getting Data  
+112. Deleting Storage Data  
+113. Stringifying & Parsing Data  
+114. Updating the Weather App 
+
+Section 15: Object Oriented JavaScript
+
+115. What is OOP?  
+116. Object Literal Recap  
+117. Classes  
+118. Class Constructors  
+119. Class Methods & Method Chaining  
+120. Class Inheritance (subclasses)  
+121. Super( )  
+122. Constructors (under the hood)  
+123. Prototype Model  
+124. Prototypal Inheritance  
+125. Built-in Objects  
+126. Making a Forecast Class (weather app)  
+
+Section 16: Databases (Firebase)
+
+127. NoSQL Databases  
+128. Firebase & Firestore  
+129. Connecting to Firestore  
+130. Getting Collections  
+131. Saving Documents  
+132. Deleting Documents  
+133. Real-time Listeners  
+134. Unsubscribing  
+
+Section 17: Project - Real-time Chatroom
+
+135. Project Preview & Setup  
+136. HTML Template  
+137. Connecting to Firebase  
+138. Chatroom Class & Adding Chats  
+139. Setting up a Real-time Listener  
+140. Complex Queries  
+141. Updating the Room & Username  
+142. Creating a ChatUI Class  
+143. Formatting the Dates  
+144. Sending New Chats  
+145. Changing Username & Local Storage  
+146. Updating the Room  
+147. Testing the App  
+
+Section 18: More ES6 Features
+
+148. Spread & Rest  
+149. Sets  
+150. Symbols 
+
+Section 19: Modern Workflow with Babel & Webpack
+
+151. Modern Feature Support  
+152. An Introduction to Babel  
+153. Installing Node.js & Babel  
+154. Using the Babel CLI  
+155. NPM Scripts & Watching Files  
+156. What is Webpack?  
+157. Setting up a Webpack File  
+158. Webpack CLI  
+159. Introduction to Modules  
+160. Default Exports  
+161. Watching for Changes  
+162. The Webpack Dev Server  
+163. Production & Development Modes  
+164. Babel & Webpack Together  
+165. Webpack Boilerplate  
+
+Section 20: Project - UI Library
+
+166. Project Preview & Setup  
+167. CSS & Style Loaders (webpack)  
+168. Tooltips  
+169. Dropdowns  
+170. Tabbed Content  
+171. Snackbars  
+172. Extending the Library 
+
+Section 21: Using Firebase Database (& Auth) Version 9
+
+173. What's New in Firebase 9?  
+174. Webpack Setup  
+175. Creating a Firebase Project  
+176. Firestore Setup & Fetching Data  
+177. Adding & Deleting Documents  
+178. Real Time Collection Data  
+179. Firestore Queries  
+180. Timestamps & Ordering Data  
+181. Fetching Single Documents  
+182. Updating Documents  
+183. Firebase Auth Setup  
+184. Signing Users Up  
+185. Logging In & Logging Out  
+186. Listening to Auth Changes  
+187. Unsubscribing from Changes 
+
+Section 22: Next Steps
+
+188. Bonus Lecture: Next Steps  
+
+
+
+
+Learn React from the ground up to make dynamic websites (includes Context, Hooks, Reducers, Routing, Auth, Databases)
+
+
+
+Section 1: Introduction & Setup
+
+1. Welcome to the Course  
+2. React at a Glance  
+3. What You Should Already Know  
+4. Environment Setup  
+5. Using the Course Files  
+6. Extra Resources & Tutorials
+
+Section 2: React Basics
+
+7. Using React with a CDN  
+8. Making a React Component  
+9. JSX & Templates  
+10. Template Expressions & Variables  
+11. Click Events & Event Handlers  
+
+Section 3: Using Create-React-App
+
+12. Making a React Site (create-react-app)  
+13. Project Structure Walkthrough  
+14. Running the Application  
+15. Using Images  
+16. Using Stylesheets 
+
+Section 4: Intro to State & useState
+
+17. Why We Need State  
+18. Using the useState Hook  
+19. How State & Rendering Works  
+20. Outputting Lists  
+21. Using the Previous State  
+22. Conditional Templates  
+23. useState Limitations  
+24. Using Multiple Components 
+
+Section 5: Components & Props
+
+25. Creating a Title Component  
+26. Intro to Props  
+27. React Fragments  
+28. Children Prop (Making a Modal Component)  
+29. Functions as Props  
+30. CHALLENGE - Showing the Modal  
+31. Portals  
+32. CHALLENGE - Reusable Event List Component  
+33. Class Components Overview 
+
+Section 6: Styling React Applications
+
+34. Using Global Stylesheets  
+35. Component Stylesheets  
+36. Using Inline Styles  
+37. Dynamic Inline Styles  
+38. Conditional CSS Classes  
+39. CSS Modules  
+
+Section 7: User Input & Events
+
+40. Forms & Labels in React  
+41. The onChange Event  
+42. Controlled Inputs  
+43. Submitting Forms (onSubmit)  
+44. Adding Events to the Event List  
+45. Using the useRef Hook  
+46. Select Boxes 
+
+Section 8: Fetching Data & useEffect
+
+47. New Project & JSON Server  
+48. Why We Need useEffect  
+49. Fetching Data with useEffect  
+50. The useEffect Dependency Array  
+51. useCallback for Function Dependencies  
+52. Creating a Custom Fetch Hook  
+53. Adding a Loading/Pending State  
+54. Handling Errors  
+55. Why We Need a Cleanup Function  
+56. Aborting Fetch Requests  
+57. useEffect Gotcha - Infinite Loops 
+
+Section 9: PROJECT BUILD - Memory Game
+
+58. Project Preview & Setup  
+59. Setting up & Shuffling Cards  
+60. Creating a Card Grid  
+61. CHALLENGE - Creating a Card Component  
+62. Making Card Choices  
+63. CHALLENGE - Comparing Choices  
+64. Adding a 'matched' Property to Cards  
+65. Flipping Cards  
+66. Flipping Animation (CSS)  
+67. Making Cards "disabled"  
+68. Finishing Touches 
+
+Section 10: The React Router
+
+69. Multi-Page React Sites  
+70. React Router Setup  
+71. Switch & Exact Match  
+72. Links & Nav Links  
+73. Fetching Data  
+74. Route Parameters  
+75. The useParams Hook  
+76. Programmatic Redirects  
+77. Redirect Component  
+78. Query Parameters  
+
+Section 11: PROJECT BUILD - Recipe Directory
+
+79. Project Preview & Setup  
+80. Router & Pages Setup  
+81. Making a Navbar Component  
+82. Fetching Data  
+83. Recipe List Component  
+84. CHALLENGE - Fetching a Single Recipe  
+85. Recipe Details Template  
+86. Making a "Create Recipe" Form  
+87. Adding Multiple Ingredients  
+88. Making a POST Request  
+89. CHALLENGE - Redirecting the User  
+90. Making a Search Bar Component  
+91. Search Results Page  
+92. Finishing Touches 
+
+Section 12: React Context & Reducers
+
+93. Prop Drilling  
+94. What is the Context API?  
+95. Creating a Context & Provider  
+96. Accessing Context Values  
+97. Creating a Custom Context Hook  
+98. Reducers & useReducer  
+99. Making a Color Theme Selector  
+100. Light & Dark Mode Selector  
+101. Styling Light & Dark Modes 
+
+Section 13: Firebase Firestore
+
+102. What is Firebase?  
+103. Firestore Databases  
+104. Connecting to Firebase  
+105. Fetching a Firestore Collection  
+106. Fetching a Firestore Document  
+107. Adding Firestore Data  
+108. Deleting Firestore Data  
+109. Real-Time Collection Data  
+110. Updating Documents  
+111. Real-Time Document Data 
+
+Section 14: PROJECT BUILD - Finance Tracker (with Firebase Authentication)
+
+112. Project Preview & Setup  
+113. CHALLENGE - Creating Pages & Routes  
+114. Creating a Navbar  
+115. Making the Login Form  
+116. CHALLENGE - Making the Signup Form  
+117. Firebase Setup  
+118. Firebase Authentication Setup  
+119. Creating a Signup Hook  
+120. Using the Signup Hook  
+121. Creating an Auth Context  
+122. Dispatching a Login Action  
+123. Creating a Logout Hook  
+124. Using the Logout Hook  
+125. Adding Cleanup Functions  
+126. Creating a Login Hook  
+127. Using the Login Hook  
+128. Conditionally Showing User Content  
+129. Firebase Auth State Changes  
+130. Waiting Until Auth is Ready  
+131. Route Guarding  
+132. Making a Transaction Form  
+133. Creating a useFirestore Hook  
+134. Adding Firestore Documents  
+135. Firestore Timestamps  
+136. Using the useFirestore Hook  
+137. Creating a useCollection Hook  
+138. Listing Transactions  
+139. Firestore Queries  
+140. Ordering Firestore Queries  
+141. Deleting Transactions  
+142. What Are Firestore Rules? 
+
+Section 15: Firestore Rules
+
+143. The Firebase CLI  
+144. Securing Collection Data  
+145. Deploying Firestore Rules 
+
+Section 16: Building & Deploying
+
+146. Building a React App  
+147. Deploying to Firebase  
+148. Updating the Site & Re-Deploying  
+149. Rolling Back Deployments  
+
+Section 17: PROJECT BUILD - Project Management Site
+
+150. Project Preview & Setup  
+151. Firebase Setup  
+152. Firebase Init (Rules, Hosting & Storage)  
+153. Re-using Firebase Hooks & Auth Context  
+154. Router & Pages Setup  
+155. Navbar Component  
+156. Sidebar Component  
+157. Creating a Signup Page  
+158. Handling File Inputs  
+159. Firebase Storage Setup  
+160. Uploading Profile Images  
+161. Signing a User Up  
+162. Creating User Documents  
+163. Logging Users Out  
+164. Making a Login Page  
+165. CHALLENGE - Logging Users In  
+166. Redirects & Route Guards  
+167. CHALLENGE - Conditional Navbar Links  
+168. User Avatar Component  
+169. Fetching Users  
+170. Showing Users Online  
+171. Making the "Create Project" Form  
+172. Using React-Select  
+173. Assigning Users  
+174. Setting Form Errors  
+175. Creating a Project Object  
+176. CHALLENGE - Saving New Projects  
+177. Fetching Projects  
+178. Making a Project List / Grid  
+179. Making a useDocument Hook  
+180. Project Details Page (fetching a project)  
+181. Project Summary Component  
+182. Making a Comments Form  
+183. Updating Firestore Documents  
+184. Adding Comments  
+185. Listing Comments  
+186. Completing / Deleting Projects  
+187. Making a Filter (part 1)  
+188. Making a Filter (part 2)  
+189. Making a Filter (part 3)  
+190. Adding Firestore Rules  
+191. Final Touches  
+192. Deploying the App 
+
+Section 18: React with Firebase Version 9
+
+193. Intro & Starter Project  
+194. Firebase Config File  
+195. Getting Documents  
+196. Real-Time Collection Data  
+197. Adding Data  
+198. Deleting Data  
+199. Setting Up Firebase Auth  
+200. Signing Users Up  
+201. Logging Users Out  
+202. Logging Users In  
+203. Adding Auth Context  
+204. Dispatching Actions  
+205. Route Guards & Redirects  
+206. Assigning Users to Books  
+207. Firestore Queries  
+208. Firebase Further Reading  
+
+Section 19: React Router Version 6
+
+209. Introduction to React Router 6  
+210. The Route Component  
+211. Redirects & useNavigate  
+212. Nested Routes  
+213. Refactoring the Recipe Site  
+
+Section 20: Extra Resources & JavaScript Helper Videos
+
+214. Refactoring the Project Management Site  
+215. Extra JavaScript Lessons  
+216. Destructuring  
+217. Import & Exports  
+218. Filter & Map Methods  
+219. Spread Syntax  
+220. Template Strings  
+221. Arrow Functions  
+222. Fetch API and Promises  
+223. Async & Await  
+224. More Tutorials

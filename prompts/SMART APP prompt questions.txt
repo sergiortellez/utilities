@@ -1,0 +1,117 @@
+Authentication Details:
+
+What kind of auth flow are you considering? Email/password, federated identity (Google, Facebook), or something else?
+
+
+
+Authentication Type: SAML-based Single Sign-On (SSO)
+
+Overview
+
+This implementation uses Security Assertion Markup Language (SAML), a widely adopted XML standard for Single Sign-On (SSO), to allow users to authenticate once with a centralized Identity Provider (IdP) and access applications hosted by a Service Provider (SP) without needing additional credentials.
+
+In this setup:
+
+Identity Provider (IdP): Managed by your organization, it controls user credentials (e.g., username, password, roles) and handles the authentication.
+Service Provider (SP): Firebase, which manages application-level access and user sessions after authentication.
+Key Features
+
+Centralized Authentication:
+Users log in using their organization-provided credentials through the Identity Provider (Google SSO ).
+The Service Provider (Firebase) does not directly manage user credentials.
+Secure Assertion of Identity:
+The IdP generates a SAML "assertion" (a secure token) that certifies the user's identity and is digitally signed for security.
+Firebase validates the assertion to establish trust.
+Role of Certificates:
+The IdP signs its assertions with a private key, and Firebase uses the IdP’s public certificate (X.509 format) to verify them.
+This ensures data integrity and authenticity.
+Mapping User Attributes:
+User attributes (e.g., email, name) from the SAML assertion are mapped to Firebase’s user records.
+Redirect-Based Flow:
+The user is redirected to the IdP for login.
+After successful login, they are redirected back to the Firebase-hosted app with a validated session.
+Why Use SAML SSO in This Context?
+
+Seamless Integration with Existing Infrastructure:
+The organization’s existing Identity Provider (IdP) manages user credentials.
+Compatible with enterprise-level policies for managing centralized authentication.
+Federated Access Across Apps:
+Users can authenticate once and access multiple applications securely.
+Scalability and Security:
+SAML SSO is a robust standard designed for large-scale, secure user authentication.
+Technical Details
+
+Protocol: SAML 2.0
+Key Configuration Points:
+Assertion Consumer Service (ACS) URL: Endpoint on Firebase to receive and validate SAML assertions.
+IdP Entity ID & SSO URL: Provided by the organization's IdP.
+Certificates: Public key (X.509) to verify signed SAML assertions.
+Outcome
+
+This authentication method allows users to:
+
+Sign in once via their organization's SSO system.
+Automatically establish a session in Firebase.
+Access the application securely without managing additional credentials.
+The system is ideal for enterprises or educational institutions needing a scalable, secure, and federated login solution.
+
+
+Will authenticated users have different roles or permissions (e.g., admin vs. student)?
+
+Yes, in the future I want to implement:
+
+ - admin
+ - directors
+ - SMART team
+ - advysors (users)
+ - students (users)
+
+
+Are there any specific pages that should be protected behind authentication?
+Firebase Integration Plans:
+
+Yes, pages/dpi/reporte.jsx should only load for logged users, and it should only log data for the specific user. 
+Eventually Ill like to implement a SMART profile, wich hold info about each student and only the logged studdent should be able to see their own info. 
+
+
+Have you decided on which Firebase services you’ll use? (Auth, Firestore, Storage, Hosting, etc.)
+
+yes for now we will be using: 
+
+- auth
+- firestore (for the SMART profile)
+
+
+Do you already have a Firebase project set up, or do you need guidance on initial configuration?
+yes, that part is done. I actually create one for testing (kept my credentials in .env.development) later I'll create a new one for production. 
+
+
+Dynamic Content by Campus:
+
+How is the selected campus chosen? By a dropdown, a route parameter (e.g., /campus/ags), or something else?
+
+I was thinking that the first time a user loads the site it should ask for the campus, then store that value on local storage and load the same page for everyone passing the campus value as a prop, then each component should know what to load. 
+If the user wants later to change its locations maybe then provide a dropdown in the navbar. 
+
+ 
+
+Is the campus-specific data stored statically (in JSON or the codebase) or fetched from Firebase?
+
+For now Im planning to store the value of the campus value in local storage of each browser, but later, when i push the SMART user profile the info should be attached to the logged user profile. 
+
+Refactoring Strategy:
+
+Are you looking for guidance on how to structure your React components and routes as you migrate from the older static site?
+
+yes, definitly, and this is my very first big react proyect, so Im going to be needing a lot of explanations. I don't just care for results, I need to lern best practices and smart coding. 
+
+Do you need recommendations on state management (e.g., Context API, Redux, Zustand) to handle global state such as user authentication or campus selection?
+
+yes
+
+Deployment and Build:
+Are you hosting this on Firebase Hosting or another service?
+I'm plannig to have a test version on my github pages domain, the prod is going to be located in the university server so if you have advise as we are building of thing to be careful with it's welcome. 
+
+Any concerns about how to structure your environment variables for development/production with Firebase credentials?
+not for now. 

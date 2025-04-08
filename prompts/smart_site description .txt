@@ -1,0 +1,100 @@
+
+Descripción general del sitio:
+
+Propósito: El sitio es el homesite de un área de la universidad para la que trabajo que se llama SMART Center. El público son jóvenes universitarios.
+
+Funcionalidades clave: El sitio contiene información clave del área en el sentido que personas ajenas, alumnos nuevos o incluso personas externas a la universidad entiendan qué es el SMART. También contiene información formal como nuestra historia, misión, visión y valores. Sobre todo es un portal digital para que los alumnos consuman algunos de nuestros servicios y estén en contacto. 
+
+Estructura y contenido:
+Número de páginas o secciones: 
+
+	Elementos permanentes: 
+	
+		- Barra de navegación: Tiene el escudo de SMART a la izquierda y un menú de vínculos a la derecha. 
+		- Footer: Primera columna con el logo de la universidad, segunda columna con los enlaces al aviso de privacidad y vínculos a redes sociales. Tercera columna con datos de contacto y direcciones postales. 
+
+	Páginas principales: 
+		- Landing page: es un one pager con las siguientes secciones: 
+			* Portada: tiene dos partes, de lado izquierdo hay una animación que explica brevemente qué es el SMART, del lado derecho carga un video con temática universitaria aleatorio de una lista de 12 posibles videos. 
+			* Nuestras experiencias: Es una botonera (parecen tarjetas) con todos los servicios de smart. Los botones están en un grid y existen tres tipos:
+				+ Sólo texto
+				+ Botón de enlace diecto
+				+ Botón expandible con más contenidos, botones o información.
+			* Quienes somos: En general es la sección donde está la información del SMART, algunas tarjetas tienen un botón para expandir la tarjeta y mostrar más información. 
+			* Mantente al día: Usamos la api de IG para traer las últimas 8 publicaciones de nuestro feed de IG a nuestro sitio, hay unos "esqueletos" de precarga y cada post se muestra de manera costumizada. 
+			* SMART TIPS: usamos la API de Youtube para hacer unos carruseles de playlists con tips para los alumnos. Del lado izquierdo de la sección hay un video en grande que presenta la sección, del lado derecho están los carruseles uno abajo del otro, son 4 carruseles con varios videos. cuando se da click en un video de los carruseles ocupa el lugar del video de introducción y se reproduce. 
+			* Contáctanos
+				+ ¿Donde nos encuentras? : tiene un mapa de google maps con nuestra ubicación, las direcciones oficiales de los campus en CDMX y el enlace a nuestro campus virtual.
+				+ Directorio del equipo: son unas tarjetas con la foto, teléfono y correo de cada miembro de nuestro equipo. 
+				+ Buzón de sugerencias: Los alumnos puede llenar un form, llamar por teléfono o escribirnos un correo para comunicarse con nosotros. 
+				
+		- Citas: uno de los principales usos de la página es generar citas para nuestros servicios presenciales, ya desde antes usábamos simplybookme entonces esa página simplemente tiene un iframe al widget. 
+		
+		- Experiencias digitales: 
+		
+			Tenemos algunas experiencias digitales de SMART expuestas en esta página en forma de tarjetas expandibles. Básicamente son de uno de dos tipos:
+				* Una lista de videos que llevan al alumno por experiencias de aprendizaje (ya se hizo toda la interfáz para que pareciera una plataforma de elearning)
+				* Una experiencia digital hecha con algún software que exporta a HTML y lo único que tenemos que hacer es alojar los archivos y enlazar a la experiencia en una nueva página.
+				
+		- Experiencias presenciales: Se presentan unas tarjetas que enlistan las experiencias que habrá en el próximo mes, los datos vienen de una hoja de google sheets que transformamos a JSON para importar en esta sección. Se actualiza en tiempo real con la hoja de Google sheets. 
+		
+		- Catálogo de programas y concursos de alto rendimiento: 
+			Se diseñaron unas tarjetas expandibles para presentar cada programa o concurso, al expandir se pueden ver los detalles de la actividad. 
+		
+			
+			
+						
+			Componentes reutilizables: 
+			
+			Hay contenidos reutilizables como la barra de navegación y el footer, además los mecanismos de muchas tarjetas se repite a lo largo del sitio. 
+		
+			
+Lenguajes y frameworks:
+
+Hay solamente HTML, CSS y JS puro, como te menciono en el resumen usamos algunas APIs y algunas herramientas como fontawesome para ícinos. 
+
+
+
+Organización del código: 
+Como sabía que iba a ocurrir la mudanza a REACT el codigo es fácilmente "separable" para ser exportado en componentes. 
+
+
+Interactividad y datos:
+
+En algunos lados del sitio usamos JS para manipular el DOM
+Actualemnte el sitio no tiene base de datos. 
+
+Objetivos del refactorizado:
+Mejoras esperadas: 
+
+Estas son las mejoras que esperamos alcanzar al mudarnos a REACT: 
+
+	- Login universal. Hay que implementar un mecanismo de login que use googleauth. Es importante que el sitio pueda ser utilizado antes de logearse y sólo se pida al usuario logearse al ser necesario. 
+	- expansión a otros campus: Como el sitio es muy exitoso la universidad quiere que se expanda a los campus de Guadalajara y Aguascalientes.Para esto hay que tomar en cuenta: 
+		
+		* debe haber un selector de campus al cargar el sitio.
+		* Debe haber un selector de campus en la barra de navegación. 
+		* En caso de que el usuario esté logueado en la página se debe actualizar su campus favorito para que el slector al cargar ya no aparezca. 
+		* El campus selecto debe ser alojado como "context" en REACT para que los componentes respondan al campus en el que el usuario está. 
+		* Se deben personalizar todos los contenidos para cada campus y crear algunos nuevos (con los mismos mecanismos) para Guadalajara y Aguascalientes. 
+ 
+
+
+Rendimiento y mantenimiento: 
+	- Pensamos usar el login en el futuro para crear un perfil de alumno donde se almacenen y desplieguen las actividades que cada alumno ha tenido. 
+	
+Desafíos y limitaciones:
+
+	- Le puedo dedicar 35 pomodoros a la semana de 25 minutos. 
+
+Conocimientos técnicos: 
+
+	Pregunta: ¿Hay áreas específicas de React o Firebase donde te sientes menos seguro y podríamos enfocarnos?
+	Respuesta: Esta es la parte que justamente me asusta, porque vivo en la ignorancia, me siento bien preparado pero nunca lo he hecho. En los cursos que tomé no tuve problemas. 
+	
+Colaboración y entorno de trabajo:
+Equipo: Estoy trabajando yo solo. 
+Herramientas de desarrollo: Uso GIT para control de versiones, VITE para mi entorno de REACT. 
+Prioridades y entregables:
+Funciones críticas: Lo que te describí es lo mínimo que debo entregar. 
+Plazos intermedios: Necesito entregar algún adelanto a medidados de noviembre. Al menos que vean algunas cosas funcionar. 

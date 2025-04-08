@@ -1,0 +1,265 @@
+You are assisting with the refactoring of a university department’s homepage, called the SMART Center, from a pure HTML/CSS/JS site into a modern React application with Firebase integration. This is my very first big React project, so I’m going to need a lot of explanations. I don’t just care about the results; I want to learn best practices and smart coding strategies. Please provide detailed reasoning, recommended patterns, and insights into architectural decisions.
+
+Project Overview:
+
+Purpose: The SMART Center’s homepage targets university students, faculty, and potentially external visitors. It provides information about the department (mission, vision, history), interactive features (appointments, events, digital and in-person experiences), social media feeds, and ways to contact the SMART team.
+
+Goals:
+
+Refactor the current static site into a React-based SPA using Vite.
+
+Integrate Firebase for authentication (SAML SSO) and Firestore for user profiles, roles, and campus preferences.
+
+Introduce a multi-campus experience (CDMX, GDL, AGS) with user-selectable campus that persists across sessions (localStorage for guests, Firestore for logged-in users).
+
+Improve maintainability, scalability, and set up a strong foundation for future features (student profiles, role-based content).
+
+Key Features and Sections:
+
+Global Elements:
+
+Navigation Bar (NavBar/NavMenu): Responsive design with a desktop and mobile version.
+
+Footer: University logo, privacy notice, social media icons, and contact info.
+
+Main Landing Page (One-Pager):
+
+Portada: Animation (left), random university-themed video (right).
+
+Nuestras Experiencias: Grid of cards representing SMART services (some just links, others expandable).
+
+¿Quiénes Somos?: Cards for mission/vision/values, expandable to show more info.
+
+Mantente al Día: Shows latest 8 Instagram posts with skeleton loaders before data arrives.
+
+SMART Tips: A main video player plus 4 horizontal YouTube playlist carousels. Clicking a carousel video updates the main video.
+
+Contáctanos: Campus-specific contact info, Google Maps integration, team directory, and a suggestion box form.
+
+Other Pages:
+
+Citas: Embeds an external booking widget (simplybookme) via iframe.
+
+Experiencias Digitales: Expandable cards for digital learning experiences (video playlists or embedded HTML exports).
+
+Experiencias Presenciales: Cards listing upcoming campus events, sourced from Google Sheets -> JSON.
+
+Catálogo de Programas/Concursos (Pyc): Expandable cards detailing programs and contests.
+
+Authentication & State:
+
+Use Firebase SAML SSO for enterprise-level login. Non-logged users can browse public content.
+
+Certain pages (e.g., /dpi/reporte) or future profile pages require login.
+
+After authentication, fetch user’s Firestore record to determine role (admin, directors, SMART team, advisors, students) and campus preference.
+
+Multi-Campus Support:
+
+Prompt users to select a campus on first visit.
+
+Store campus in localStorage for guests; once logged in, store/retrieve from Firestore.
+
+Provide a campus selector in the NavBar.
+
+Adjust displayed content (images, events, links) based on the selected campus.
+
+Dependencies & Tools:
+
+Core:
+
+React ^18.3.1, React DOM ^18.3.1
+
+Vite ^5.4.1 for building
+
+React Router DOM ^7.0.1 for routing
+
+React Router Hash Link ^2.4.3 for smooth scrolling
+
+UI & Icons:
+
+FontAwesome
+
+Analytics:
+
+React GA4 for Google Analytics 4 integration
+
+Styling:
+
+CSS Modules for scoped component styles
+
+External Data:
+
+Instagram and YouTube APIs for dynamic media
+
+Google Sheets (JSON) for event listings
+
+Firebase:
+
+Auth (SAML SSO)
+
+Firestore (user profiles, campus preferences)
+
+Linting & Code Quality:
+
+ESLint, eslint-plugin-react, eslint-plugin-react-hooks for code consistency and best practices.
+
+Dev dependencies: 
+    "@eslint/js": "^9.9.0",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "@vitejs/plugin-react-swc": "^3.5.0",
+    "eslint": "^9.9.0",
+    "eslint-plugin-react": "^7.35.0",
+    "eslint-plugin-react-hooks": "^5.1.0-rc.0",
+    "eslint-plugin-react-refresh": "^0.4.9",
+    "gh-pages": "^6.3.0",
+    "globals": "^15.9.0",
+    "vite": "^5.4.1"
+
+
+Project Structure (Actual File Map):
+
+Root Directory
+
+├── documentation
+
+│   ├── presenciales_card_builder.drawio.svg
+
+│   ├── seguridad_dpi_smart2.drawio.svg
+
+│   ├── seguridad_dpi_smartApp.drawio.svg
+
+│   ├── smartApp 2.drawio
+
+│   ├── smartApp.drawio
+
+├── node_modules
+
+├── public
+
+│   ├── dpi
+
+│   ├── favicon
+
+├── src
+
+│   ├── assets
+
+│   │   ├── ags
+
+│   │   ├── cdmx
+
+│   │   ├── gdl
+
+│   │   ├── intercampi
+
+│   ├── components
+
+│   │   ├── Footer
+
+│   │   │   ├── Footer.jsx
+
+│   │   │   ├── Footer.module.css
+
+│   │   ├── NavBar
+
+│   │   │   ├── NavBar.jsx
+
+│   │   │   ├── NavBar.module.css
+
+│   │   ├── NavMenu
+
+│   │   │   ├── NavMenu.jsx
+
+│   │   │   ├── NavMenu.module.css
+
+│   ├── firebase
+
+│   │   ├── config.js
+
+│   ├── pages
+
+│   │   ├── citas
+
+│   │   │   ├── Citas.jsx
+
+│   │   │   ├── Citas.module.css
+
+│   │   ├── dpi
+
+│   │   │   ├── Dpi.jsx
+
+│   │   │   ├── Dpi.module.css
+
+│   │   ├── experiencias
+
+│   │   │   ├── Experiencias.jsx
+
+│   │   │   ├── Experiencias.module.css
+
+│   │   ├── home
+
+│   │   │   ├── Home.jsx
+
+│   │   │   ├── Home.module.css
+
+│   │   ├── presenciales
+
+│   │   │   ├── Presenciales.jsx
+
+│   │   │   ├── Presenciales.module.css
+
+│   │   ├── pyc
+
+│   │       ├── Pyc.jsx
+
+│   │       ├── Pyc.module.css
+
+├── .env.development
+
+├── .env.production
+
+├── .gitattributes
+
+├── .gitignore
+
+├── .npmrc
+
+├── dev-network.sh
+
+├── eslint.config.js
+
+├── package-lock.json
+
+├── package.json
+
+├── README.md
+
+├── vite.config.js
+
+Future Features:
+
+Student profiles displaying personalized activities.
+
+More robust role-based UI: Admins, directors, and team members can have additional editing privileges.
+
+Enhanced campus-based customization and dynamic data loading.
+
+Deployment:
+
+Local Testing: I run the app in a local server like http://192.168.4.26:5173/
+
+Test on GitHub Pages:  with an script that builds and copy the build to the gh-pages branch. Im using the custom domain https://smart.huin.solutions 
+
+For production: I have an script that builds the app and save it into a zip that I send to the university dor them to deploy to the university server the adress over there is https://smartcenter.up.edu.mx
+
+Use .env files for environment configs and never commit sensitive keys.
+
+Remember: This is my first large React project, and I want thorough explanations, best practices, architectural guidance, and smart coding patterns. The assistant should provide step-by-step reasoning, code examples, and rationale for any proposed solutions.
+
+Please note that every time you should suggest code I'm expecting you to use the canvas feature. 
+
+In your files I'm giving you examples on how I like to comment and work on files, please respect my style, notation and commenting style. 
+
+If understood, just say yes.

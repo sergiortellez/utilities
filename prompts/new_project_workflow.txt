@@ -1,0 +1,71 @@
+Every time I need a new project use this workflow: 
+
+1. Use the terminal to open the location of the new project. 
+2. Create a new folder using 'mkdir new_folder'
+3. Use the vite command to create the content in the new folder 'npm create vite@latest project-name'
+4. Install all the node_modules dependencies: 'npm install'
+5. Init git in the folder using 'git init'
+6. Create a new repo using GitHub cli tool: 'gh repo create my-new-repo --private'
+7. Connect the local project to the remote repo: 'git remote add origin https://github.com/<github-username>/<repository-name>.git'
+8. check that the origin is being added: 'git remote -v'
+9. Add dev-network.sh file to the root of the  repository 'touch dev-network.sh'
+10. Add our custom script to the dev-network file:
+
+	#!/bin/bash
+	# Get the current IP address on macOS
+	IP=$(ipconfig getifaddr en0) 
+	
+	
+	# Start the Vite development server and capture its output to a file
+	npm run dev > vite-output.log 2>&1 &
+	
+	# Wait for the server to start
+	sleep 5
+	
+	# Extract the port number from Vite's output
+	PORT=$(grep -o 'http://localhost:[0-9]*' vite-output.log | head -1 | cut -d ':' -f3)
+	
+	# Construct the full URL
+	URL="http://$IP:$PORT"
+	
+	# Open the URL in Google Chrome
+	open -a "Google Chrome" $URL
+	
+	# Copy the URL to the clipboard
+	echo $URL | pbcopy
+	
+	echo "Development server running on $URL and copied to clipboard"
+	
+	
+	
+	#                  🆁🅴🅰🅳 🅼🅴
+	
+	#Don't forget to copy this on package.json on the "scripts" section:
+	
+	#"dev-network": "./dev-network.sh",
+	
+	#and the first time you must run this command to give execution permissions 
+	
+	#chmod +x start-network.sh
+
+
+11. Modify package.json: 
+	-Include the following configuration in package.json:
+		export default defineConfig({
+  		server: {
+    			host: '0.0.0.0'
+  			},
+  			// ... other options
+		});
+12. Add a Script to package.json:
+	-Add the following script to the scripts section of package.json:
+	
+	{
+  		"scripts": {
+    		"dev-network": "./dev-network.sh"
+  		}
+	}
+	
+13. Run the custom script for the first time: 'chmod +x dev-network.sh'
+	
+14. Run the project 'npm run start-network'
