@@ -7,9 +7,12 @@ You can get the exact instructions (with codes and tokens if you activate your k
 
 To authenticate when using npm, create a .npmrc file in the root of your project (or wherever your package.json file lives). Then add the following snippet:
 
+(The exact info with the token is in the package settings in the website)
+
     @awesome.me:registry=https://npm.fontawesome.com/
     @fortawesome:registry=https://npm.fontawesome.com/
     //npm.fontawesome.com/:_authToken=YOUR_TOKEN
+
 
 2. Install Icons in your Project
 
@@ -17,7 +20,13 @@ Once access is set up, you can now install your Font Awesome Kit as a package vi
 
     npm install --save '@awesome.me/kit-YOUR_KIT@latest'
 
-3. Updating your Package
+
+3. You will also need to install fontAwesome REACT component.
+
+	npm i --save @fortawesome/react-fontawesome@latest
+
+
+4. IF Updating your Package
 
 If you add, remove, or edit icons or styles in your Kit, you'll need to update your package to get the latest changes.
 
